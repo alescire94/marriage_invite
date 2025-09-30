@@ -1,0 +1,131 @@
+.envelope-scene {
+    perspective: 1400px;
+    cursor: grab;
+}
+
+.envelope-scene:active {
+    cursor: grabbing;
+}
+
+/* hard reset: no visual container around the envelope */
+.envelope-scene,
+.envelope-layered {
+    background: transparent !important;
+    box-shadow: none !important;
+    filter: none !important;
+    border: 0 !important;
+}
+
+.envelope-layered::before,
+.envelope-layered::after,
+.envelope-scene::before,
+.envelope-scene::after {
+    content: none !important;
+}
+
+/* ========= Lottie envelope mode ========= */
+.lottie-envelope {
+    width: clamp(320px, 60vw, 560px);
+    height: clamp(200px, 35vw, 360px);
+}
+
+.lottie-envelope svg,
+.lottie-envelope canvas,
+.lottie-envelope div {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ===== layered graphic envelope (base + flap images) ===== */
+.envelope-layered {
+    width: clamp(320px, 60vw, 560px);
+    height: clamp(200px, 35vw, 360px);
+    position: relative;
+    perspective: 1400px;
+    background: transparent;
+    box-shadow: none;
+    filter: none;
+    border: 0;
+    transform-style: preserve-3d;
+}
+
+.envelope-layered .env-base {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.envelope-layered .flap-wrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    z-index: 2;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Flap rotates around the real fold line (y=100 on a 520 canvas => 19.2%) */
+.envelope-layered .flap-wrap {
+    transform-origin: 50% 19.2%;
+    transform: rotateX(0deg);
+    transition: transform 800ms ease-in-out;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.envelope-layered .flap-wrap img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    pointer-events: auto;
+}
+
+/* Auto animation when the envelope is opened via JS */
+.envelope-layered.open .flap-wrap {
+    transform: rotateX(-180deg);
+    pointer-events: none;
+}
+
+/* Stamp overlay remains compatible */
+.envelope-layered .stamp {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    padding: 6px 8px;
+    border: 2px dashed #4f46e5;
+    color: #4f46e5;
+    background: #eef2ff;
+    border-radius: 8px;
+    z-index: 4;
+}
+
+/* ensure flap has absolutely no box shadow */
+img.env-flap-img {
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* contenitore dell'animazione Lottie */
+.lottie-envelope {
+    width: min(820px, 92vw);
+    aspect-ratio: 800 / 520;
+    /* stesso rapporto della tua busta */
+    display: block;
+    cursor: pointer;
+}
+
+.envelope-scene {
+    outline: none;
+}

@@ -1,0 +1,7 @@
+.card {
+    @apply bg-white rounded-2xl shadow-xl p-6 md:p-10 border border-gray-100;
+}
+
+.kbd {
+    @apply font-mono text-xs border px-1.5 py-0.5 rounded;
+}

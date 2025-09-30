@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Print styles: make landing page A4-friendly */
+@media print {
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .print-block {
+        display: block !important;
+    }
+}
+
+/* Hard reset for envelope view */
+html,
+body,
+#app {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+#app {
+    min-height: 100vh;
+}

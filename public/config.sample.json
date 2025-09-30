@@ -1,0 +1,30 @@
+{
+    "brand": {
+        "primary": "#4f46e5",
+        "bg": "#f8fafc",
+        "text": "#0f172a",
+        "fontDisplay": "Inter, ui-sans-serif, system-ui",
+        "fontMono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New'"
+    },
+    "envelope": {
+        "title": "Apri la busta",
+        "subtitle": "Scorri verso l’alto per aprire ✉️",
+        "stampText": "INVITE"
+    },
+    "invite": {
+        "bride": "Alice",
+        "groom": "Bob",
+        "date": "Sabato 20 Giugno 2026",
+        "time": "16:30",
+        "venueName": "Villa dei Programmatori",
+        "address": "Via Algoritmo 42, Roma",
+        "mapsUrl": "https://maps.google.com/?q=Via+Algoritmo+42+Roma",
+        "ibanLabel": "IBAN regalo",
+        "iban": "IT60X0542811101000000123456",
+        "note": "Dress code: nerd-chic (t-shirt delle conference opzionali)."
+    },
+    "pdf": {
+        "mode": "print",
+        "fileName": "invito-matrimonio.pdf"
+    }
+}

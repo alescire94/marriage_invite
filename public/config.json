@@ -1,21 +1,16 @@
 {
     "brand": {
         "primary": "#4f46e5",
-        "bg": "#3CB9A0",
+        "bg": "#48E098",
         "text": "#0f172a",
         "fontDisplay": "Inter, ui-sans-serif, system-ui",
         "fontMono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New'"
     },
-    "envelope": {
-        "title": "Apri la busta",
-        "subtitle": "Scorri verso l’alto per aprire ✉️",
-        "stampText": "INVITE"
-    },
     "invite": {
-        "bride": "Alice",
-        "groom": "Bob",
-        "date": "Sabato 20 Giugno 2026",
-        "time": "16:30",
+        "bride": "Sonia",
+        "groom": "Alessandro",
+        "date": "Venerdì 18 Settembre 2026",
+        "time": "11:30",
         "venueName": "Villa dei Programmatori",
         "address": "Via Algoritmo 42, Roma",
         "mapsUrl": "https://maps.google.com/?q=Via+Algoritmo+42+Roma",

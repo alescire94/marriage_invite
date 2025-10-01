@@ -128,4 +128,25 @@ img.env-flap-img {
 
 .envelope-scene {
     outline: none;
+    position: relative;
+    /* positioning context for overlays */
+}
+
+/* ===== Overlay: couple walking animation (Lottie) ===== */
+.lottie-couple {
+    position: absolute;
+    inset: 0;
+    margin: 0 auto;
+    width: min(680px, 75vw);
+    aspect-ratio: 800 / 520;
+    /* match envelope canvas ratio */
+    display: block;
+    z-index: 3;
+    /* above the envelope */
+    pointer-events: auto;
+    /* clickable */
+    opacity: 0;
+    /* revealed on click */
+    transition: opacity 200ms ease-in;
+    transform: translateX(5%);
 }

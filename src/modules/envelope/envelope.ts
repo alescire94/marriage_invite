@@ -12,6 +12,7 @@ export async function renderEnvelope(root: HTMLElement) {
     const BASE: string = (import.meta as any).env?.BASE_URL || '/'
     const v = (import.meta as any).env?.DEV ? `?v=${Date.now()}` : ''
     const jsonPath = `${BASE}assets/envelope/envelope.json${v}`
+    const coupleJsonPath = `${BASE}assets/envelope/Wedding.json${v}`
 
     // wrapper scena
     const scene = el('div', 'envelope-scene select-none')
@@ -19,10 +20,12 @@ export async function renderEnvelope(root: HTMLElement) {
 
     // contenitore Lottie
     const lottieBox = el('div', 'lottie-envelope')
+    const coupleBox = el('div', 'lottie-couple')
     // opzionale: mostra un bordo debug se vuoi verificare il box
     // lottieBox.style.outline = '1px dashed #ddd'
 
     scene.appendChild(lottieBox)
+    scene.appendChild(coupleBox)
     root.innerHTML = ''
     root.append(scene)
 
@@ -35,14 +38,34 @@ export async function renderEnvelope(root: HTMLElement) {
         path: jsonPath
     })
 
+    const couple = lottie.loadAnimation({
+        container: coupleBox,
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        path: coupleJsonPath
+    })
+
     // stato per evitare doppi click
     let playing = false
-
     const start = () => {
         if (playing) return
         playing = true
-        anim.goToAndStop(0, true)  // riparti sempre dall'inizio
+        coupleBox.style.opacity = '1'
+        anim.goToAndStop(0, true)
+        couple.goToAndStop(0, true)
         anim.play()
+        couple.play()
+    }
+
+    let envDone = false
+    let coupleDone = false
+    let coupleFailed = false
+
+    const maybeGo = () => {
+        if (envDone && (coupleDone || coupleFailed)) {
+            location.hash = '#/invite'
+        }
     }
 
     // click o invio/spazio fanno partire l’animazione
@@ -53,7 +76,19 @@ export async function renderEnvelope(root: HTMLElement) {
 
     // al termine vai alla landing
     anim.addEventListener('complete', () => {
-        location.hash = '#/invite'
+        envDone = true
+        maybeGo()
+    })
+
+    couple.addEventListener('complete', () => {
+        coupleDone = true
+        maybeGo()
+    })
+
+    couple.addEventListener('data_failed', () => {
+        console.error('[lottie] failed to load:', coupleJsonPath)
+        coupleFailed = true
+        maybeGo()
     })
 
     // fallback se il JSON non carica

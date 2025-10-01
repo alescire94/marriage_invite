@@ -18,13 +18,6 @@
     }
 }
 
-/* Hard reset for envelope view */
-html,
-body,
-#app {
-    background: transparent !important;
-    box-shadow: none !important;
-}
 
 #app {
     min-height: 100vh;
